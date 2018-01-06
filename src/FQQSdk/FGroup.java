@@ -15,6 +15,8 @@ import utils.HttpUtils;
 
 public class FGroup {
 
+	
+	boolean debug = true;
 	public class Member
 	{
 	public Member(String card, String flag, String g, String join_time,
@@ -200,53 +202,6 @@ public class FGroup {
 
 	
 	
-	public static class GroupModel extends AbstractListModel
-	{
-		
-		List<GroupItem> list;
-
-		public GroupModel(List<GroupItem> list) {
-			super();
-			this.list = list;
-		}
-
-		@Override
-		public int getSize() {
-			// TODO Auto-generated method stub
-			return list.size();
-		}
-
-		@Override
-		public Object getElementAt(int index) {
-			// TODO Auto-generated method stub
-			return list.get(index).getQn();
-		}
-		
-	}
-	//列表模型,填充列表的
-	public static class MemberModel extends AbstractListModel
-	{
-		
-		List<Member> list;
-
-		public MemberModel(List<Member> list) {
-			super();
-			this.list = list;
-		}
-
-		@Override
-		public int getSize() {
-			// TODO Auto-generated method stub
-			return list.size();
-		}
-
-		@Override
-		public Object getElementAt(int index) {
-			// TODO Auto-generated method stub
-			return  list.get(index).getNick();
-		}
-		
-	}
 	
 	public String getGroupListData() throws Exception
 	{
@@ -363,7 +318,9 @@ public class FGroup {
 		List<GroupItem> result = new ArrayList<GroupItem>(); 	
 		String json = getGroupListData();
 		
-	System.out.println("群数据："+ json);
+	
+		if(debug)
+		System.out.println("群数据："+ json);
 		JSONObject object = JSONObject.fromObject(json);
 		String[] types = {
 				"create","manage","join"

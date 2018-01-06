@@ -23,12 +23,16 @@ import utils.Utils;
 
 public class QQSDK {
 
+	/**
+	 * cookies管理，自动的
+	 */
 	CookieManager cookiemng;
 
 	LoginListener loginListener;
 
 	String CSRFToken;
 
+	boolean debug = true;
 	public LoginListener getLoginListener() {
 		return loginListener;
 	}
@@ -120,7 +124,7 @@ public class QQSDK {
 		
 	}
 	// 获取好友列表那些要post一个bkn参数
-	String getCSRFToken(String skey) {
+	public String getCSRFToken(String skey) {
 
 		if(skey == null)return null;
 		int r = 5381;
@@ -141,13 +145,13 @@ public class QQSDK {
 
 		CookieHandler.setDefault(cookiemng);
 		
-		try {
-			readCookies();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			
-			e.printStackTrace();
-		}
+//		try {
+//			readCookies();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			
+//			e.printStackTrace();
+//		}
 	}
 
 	public void cancel() {
@@ -160,6 +164,7 @@ public class QQSDK {
 	public void login(String url) throws Exception
 	{
 		String result =(String) HttpUtils.downloadString(url,null).getResult();
+		if(debug)
 		System.out.println("返回的登录成功的url访问结果:" + result);
 		
 	}
@@ -218,7 +223,6 @@ public class QQSDK {
 				try {
 					String result = (String) HttpUtils
 							.downloadString(url, null).getResult();
-					;
 
 					System.out.println("Response Result:" + result);
 
@@ -237,7 +241,7 @@ public class QQSDK {
 				requestTime += 1;
 
 				if (isCancel)
-					this.cancel();
+				{	this.cancel();return;}
 			}
 
 		}, 0, period);

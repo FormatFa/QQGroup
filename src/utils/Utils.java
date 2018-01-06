@@ -12,6 +12,9 @@ import java.io.OutputStream;
 
 public class Utils {
 
+	
+	
+	//本地写入工具类
 	public static void writeString(String data,String path) throws IOException
 	{
 		

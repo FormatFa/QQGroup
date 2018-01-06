@@ -34,6 +34,8 @@ import FQQSdk.FGroup.GroupItem;
 import FQQSdk.FGroup.Member;
 import FQQSdk.LoginListener;
 import FQQSdk.QQSDK;
+import GUI.GroupModel;
+import GUI.MemberModel;
 import QQAnalysis.GroupAnalysis;
 import QQAnalysis.GroupAnalysis.MostResult;
 
@@ -459,7 +461,7 @@ dialog.getContentPane().add(ok);
 		}
 		
 		
-		grouplist.setModel(new FGroup.GroupModel(groups));
+		grouplist.setModel(new GroupModel(groups));
 	}
 
 	
@@ -469,7 +471,7 @@ dialog.getContentPane().add(ok);
 		try {
 			nowMembers = item.getMembers();
 			
-			FGroup.MemberModel m = new FGroup.MemberModel(nowMembers);
+			MemberModel m = new MemberModel(nowMembers);
 			
 			memlist.setModel(m);
 		} catch (Exception e) {
